@@ -1,3 +1,6 @@
+using DiBK.RpbEditor.Application.Configuration;
+using DiBK.RpbEditor.Application.Services;
+using DiBK.RpbEditor.Web.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -5,12 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using DiBK.RpbEditor.Application.Configuration;
-using DiBK.RpbEditor.Application.Constants;
-using DiBK.RpbEditor.Application.Services;
-using DiBK.RpbEditor.Web.Configuration;
-using System;
-using System.Net.Http.Headers;
 using System.Reflection;
 
 namespace DiBK.RpbEditor
@@ -66,7 +63,7 @@ namespace DiBK.RpbEditor
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PlanbestemmelserEditor v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DiBK Planbestemmelser Editor v1"));
             }
 
             app.UseCors(options => options

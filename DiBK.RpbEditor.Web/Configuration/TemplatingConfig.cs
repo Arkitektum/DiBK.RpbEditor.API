@@ -10,7 +10,7 @@ namespace DiBK.RpbEditor.Web.Configuration
 {
     public static class TemplatingConfig
     {
-        private static readonly Assembly _viewAssembly = Assembly.Load("PlanbestemmelserEditor.Application");
+        private static readonly Assembly _viewAssembly = Assembly.Load("DiBK.RpbEditor.Application");
 
         public static void AddTemplating(this IServiceCollection services, IMvcBuilder mvcBuilder, Action<TemplatingSettings> options)
         {
