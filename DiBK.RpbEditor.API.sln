@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiBK.RpbEditor.Web", "DiBK.RpbEditor.Web\DiBK.RpbEditor.Web.csproj", "{0CEAFA3E-7590-4E7B-92B1-F6D19993E2B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiBK.RpbEditor.API.Web", "DiBK.RpbEditor.API.Web\DiBK.RpbEditor.API.Web.csproj", "{0CEAFA3E-7590-4E7B-92B1-F6D19993E2B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiBK.RpbEditor.Application", "DiBK.RpbEditor.Application\DiBK.RpbEditor.Application.csproj", "{3F7E7E2E-DC0F-4704-A990-5E0A7CB47C0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiBK.RpbEditor.API.Application", "DiBK.RpbEditor.API.Application\DiBK.RpbEditor.API.Application.csproj", "{3F7E7E2E-DC0F-4704-A990-5E0A7CB47C0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
