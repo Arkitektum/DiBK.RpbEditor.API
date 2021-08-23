@@ -1,0 +1,44 @@
+@using DiBK.RpbEditor.Application.Models.DTO
+@using DiBK.RpbEditor.Application.Extensions
+@model Reguleringsplanbestemmelser
+
+@if (Model.Områdebestemmelser?.Any() ?? false)
+{
+    var områdebestemmelser = Model.Områdebestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
+
+    @foreach (var bestemmelse in områdebestemmelser)
+    {
+        <div class="section">
+            @Html.RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
+
+            @if (!string.IsNullOrWhiteSpace(bestemmelse.Tekst?.TekstInnhold))
+            {
+                <p class="text-content">@Html.Raw(bestemmelse.Tekst.TekstInnhold)</p>
+            }
+
+            @if (bestemmelse.BestemmelseOmrådenavn?.Any() ?? false)
+            {
+                <div class="row">
+                    <div class="col-4">Gjelder bestemmelsesområder:</div>
+                    <div class="col-8">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
+                </div>
+            }
+
+            @if (bestemmelse.Feltnavn?.Any() ?? false)
+            {
+                <div class="row">
+                    <div class="col-4">Gjelder felter:</div>
+                    <div class="col-8">@string.Join(", ", bestemmelse.Feltnavn)</div>
+                </div>
+            }
+
+            @if (bestemmelse.Objektnavn?.Any() ?? false)
+            {
+                <div class="row">
+                    <div class="col-4">Gjelder objekter:</div>
+                    <div class="col-8">@string.Join(", ", bestemmelse.Objektnavn)</div>
+                </div>
+            }
+        </div>
+    }
+}

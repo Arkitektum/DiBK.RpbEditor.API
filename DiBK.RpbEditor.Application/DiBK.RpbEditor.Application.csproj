@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Templates\Content\styles\bootstrap.min.css" />
+    <None Remove="Templates\Content\styles\styles.css" />
+    <None Remove="Templates\Views\Planbestemmelser\Planbestemmelser.cshtml" />
+    <None Remove="Templates\Views\Planbestemmelser\_Fellesbestemmelser.cshtml" />
+    <None Remove="Templates\Views\Planbestemmelser\_Formaalsbestemmelser.cshtml" />
+    <None Remove="Templates\Views\Planbestemmelser\_Hensynsbestemmelser.cshtml" />
+    <None Remove="Templates\Views\Planbestemmelser\_JuridiskeDokumenter.cshtml" />
+    <None Remove="Templates\Views\Planbestemmelser\_KravOmDetaljregulering.cshtml" />
+    <None Remove="Templates\Views\Planbestemmelser\_Omraadebestemmelser.cshtml" />
+    <None Remove="Templates\Views\Planbestemmelser\_Planhensikt.cshtml" />
+    <None Remove="Templates\Views\Planbestemmelser\_Rekkefoelgebestemmelser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\Content\styles\bootstrap.min.css" />
+    <EmbeddedResource Include="Templates\Content\styles\styles.css" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Planhensikt.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_JuridiskeDokumenter.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Rekkefoelgebestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Omraadebestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Hensynsbestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Formaalsbestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Fellesbestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_KravOmDetaljregulering.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\Planbestemmelser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.36" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="MimeDetective.InMemory" Version="0.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>

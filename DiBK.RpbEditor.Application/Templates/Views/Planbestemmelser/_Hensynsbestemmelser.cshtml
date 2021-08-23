@@ -1,0 +1,33 @@
+@using DiBK.RpbEditor.Application.Models.DTO
+@using DiBK.RpbEditor.Application.Extensions
+@model Reguleringsplanbestemmelser
+
+@if (Model.Hensynsbestemmelser?.Any() ?? false)
+{
+    var hensynsbestemmelser = Model.Hensynsbestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
+
+    @foreach (var bestemmelse in hensynsbestemmelser)
+    {
+        <div class="section">
+            @Html.RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
+
+            @if (!string.IsNullOrWhiteSpace(bestemmelse.Tekst?.TekstInnhold))
+            {
+                <p class="text-content">@Html.Raw(bestemmelse.Tekst.TekstInnhold)</p>
+            }
+
+            <div class="row">
+                <div class="col-4">Hensynskategori:</div>
+                <div class="col-8">@bestemmelse.Hensynskategori?.Kodebeskrivelse</div>
+            </div>
+
+            @if (bestemmelse.HensynSonenavn?.Any() ?? false)
+            {
+                <div class="row">
+                    <div class="col-4">Gjelder hensynssoner:</div>
+                    <div class="col-8">@string.Join(", ", bestemmelse.HensynSonenavn)</div>
+                </div>
+            }
+        </div>
+    }
+}

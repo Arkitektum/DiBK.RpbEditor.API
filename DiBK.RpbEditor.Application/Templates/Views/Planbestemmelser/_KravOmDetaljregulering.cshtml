@@ -1,0 +1,41 @@
+@using DiBK.RpbEditor.Application.Models.DTO
+@model Reguleringsplanbestemmelser
+
+@if (Model.KravOmDetaljregulering?.Any() ?? false)
+{
+    <h2>Krav om detaljregulering</h2>
+
+    @foreach (var krav in Model.KravOmDetaljregulering)
+    {
+        <div class="section">
+            @if (krav.Feltnavn?.Any() ?? false)
+            {
+                <div class="row">
+                    <div class="col-4">Gjelder felter:</div>
+                    <div class="col-8">@string.Join(", ", krav.Feltnavn)</div>
+                </div>
+            }
+
+            @if (krav.BestemmelseOmrådenavn?.Any() ?? false)
+            {
+                <div class="row">
+                    <div class="col-4">Gjelder bestemmelsesområder:</div>
+                    <div class="col-8">@string.Join(", ", krav.BestemmelseOmrådenavn)</div>
+                </div>
+            }
+
+            @if (krav.HensynSonenavn?.Any() ?? false)
+            {
+                <div class="row">
+                    <div class="col-4">Gjelder hensynssoner:</div>
+                    <div class="col-8">@string.Join(", ", krav.HensynSonenavn)</div>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(krav.KravTilDetaljreguleringen?.TekstInnhold))
+            {
+                <p class="text-content">@Html.Raw(krav.KravTilDetaljreguleringen.TekstInnhold)</p>
+            }
+        </div>
+    }
+}

@@ -1,0 +1,131 @@
+﻿@media print {
+    body {
+        min-width: unset !important;
+    }
+
+    .sheet {
+        margin: 0;
+    }
+}
+
+@media screen {
+    body {
+        background-image: linear-gradient(164deg, rgba(137, 174, 196, 0.34), #fff, rgba(0, 117, 127, 0.19));
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .sheet {
+        padding: 2.5cm;
+        width: 260mm !important;
+        box-shadow: 0 2px 3px rgb(0 0 0 / 12%);
+        margin: 0 auto;
+    }
+}
+
+@media print, screen {
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 14px;
+    }
+
+    .sheet {
+        overflow: hidden;
+        position: relative;
+        box-sizing: border-box;
+        page-break-after: always;
+        width: 210mm;
+        height: unset;
+        background-color: #ffffff;
+    }
+
+    h2, h3, h4, h5 {
+        color: #0074ab;
+    }
+
+    h1 {
+        font-size: 28px;
+        text-transform: uppercase;
+        margin-bottom: 32px;
+        line-height: 28px;
+    }
+
+        h1 span {
+            text-transform: lowercase;
+            font-size: 14px;
+            display: block;
+            font-weight: 400;
+        }
+
+    h2 {
+        font-size: 20px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4, h5 {
+        font-size: 14px;
+    }
+
+    /*strong {
+        font-weight: 500;
+    }*/
+
+    .header {
+        border: 1px solid #ddd;
+        padding: 12px 18px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        background: #fbfbfb;
+    }
+
+        .header .title {
+            font-size: 18px;
+            line-height: 22px;
+        }
+
+            .header .title span {
+                font-size: 12px;
+                display: block;
+            }
+
+        .header .info {
+            text-align: right;
+        }
+
+    .section {
+        margin-bottom: 24px;
+    }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+    .text-content {
+        margin-top: 20px;
+    }
+
+    .numbering {
+        width: 60px;
+        display: inline-block;
+    }
+
+    .text span {
+        display: inline-block;
+        width: 60px;
+    }
+
+    .names {
+        white-space: unset;
+        margin-top: 5px;
+    }
+}

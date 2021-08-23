@@ -1,0 +1,20 @@
+@using DiBK.RpbEditor.Application.Models.DTO
+@using DiBK.RpbEditor.Application.Extensions
+@model Reguleringsplanbestemmelser
+
+@if (Model.Fellesbestemmelser?.Any() ?? false)
+{
+    var fellesbestemmelser = Model.Fellesbestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
+
+    @foreach (var bestemmelse in fellesbestemmelser)
+    {
+        <div class="section">
+            @Html.RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
+
+            @if (!string.IsNullOrWhiteSpace(bestemmelse.Tekst?.TekstInnhold))
+            {
+                <p class="text-content">@Html.Raw(bestemmelse.Tekst.TekstInnhold)</p>
+            }
+        </div>
+    }
+}

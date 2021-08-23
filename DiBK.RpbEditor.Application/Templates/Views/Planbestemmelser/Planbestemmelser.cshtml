@@ -1,0 +1,56 @@
+@using DiBK.RpbEditor.Application.Models.DTO
+@using DiBK.RpbEditor.Application.Extensions
+@model Reguleringsplanbestemmelser
+<!doctype html>
+<html lang="no">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Reguleringsplan - @Model.Plantype.Kodebeskrivelse.ToLower() | @Model.Plannavn</title>
+
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <style type="text/css">
+        @@page {
+            size: A4;
+            margin: 2.5cm;
+        }
+    </style>
+</head>
+<body>
+    <div class="sheet">
+        <div class="header">
+            <div class="title">
+                Reguleringsplan - @Model.Plantype.Kodebeskrivelse.ToLower()
+                <span>(jf. plan- og bygningslovens (pbl) kap. 12)</span>
+            </div>
+            <div class="info">
+                @Model.Plannavn<br />
+                Nasjonal arealplan-ID: @(Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer)_@(Model.NasjonalArealplanId.Planidentifikasjon)
+            </div>
+        </div>
+
+        <h1>
+            Reguleringsbestemmelser <span>(pbl §12-7)</span>
+        </h1>
+
+        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Planhensikt.cshtml")
+
+        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Fellesbestemmelser.cshtml")
+
+        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Formaalsbestemmelser.cshtml")
+
+        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Hensynsbestemmelser.cshtml")
+
+        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Omraadebestemmelser.cshtml")
+
+        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Rekkefoelgebestemmelser.cshtml")
+
+        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_KravOmDetaljregulering.cshtml")
+
+        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_JuridiskeDokumenter.cshtml")
+    </div>
+</body>
+</html>

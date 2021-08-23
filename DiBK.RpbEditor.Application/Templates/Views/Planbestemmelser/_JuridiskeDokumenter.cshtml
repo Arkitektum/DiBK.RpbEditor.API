@@ -1,0 +1,42 @@
+@using DiBK.RpbEditor.Application.Models.DTO
+@model Reguleringsplanbestemmelser
+
+@if (Model.JuridiskeDokumenter?.Any() ?? false)
+{
+    <h2>Juridiske dokumenter</h2>
+
+    @foreach (var dokument in Model.JuridiskeDokumenter)
+    {
+        var dokDato = dokument.DokumentetsDato.HasValue ? dokument.DokumentetsDato.Value.ToString("dd.MM.yyyy") : "Ikke oppgitt";
+
+        <div class="section">
+            <h3>@dokument.Tittel</h3>
+
+            @if (!string.IsNullOrWhiteSpace(dokument.Dokumentreferanse))
+            {
+                <div class="row">
+                    <div class="col-4">Dokumentreferanse:</div>
+                    <div class="col-8">@dokument.Dokumentreferanse</div>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(dokument.Sammendrag))
+            {
+                <p class="text-content">@Html.Raw(dokument.Sammendrag)</p>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(dokument.Rapportnummer))
+            {
+                <div class="row">
+                    <div class="col-4">Rapportnummer:</div>
+                    <div class="col-8">@dokument.Rapportnummer</div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-4">Dokumentets dato:</div>
+                <div class="col-8">@dokDato</div>
+            </div>
+        </div>
+    }
+}

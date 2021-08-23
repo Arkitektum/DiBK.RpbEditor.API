@@ -1,0 +1,15 @@
+@using DiBK.RpbEditor.Application.Models.DTO
+@using DiBK.RpbEditor.Application.Extensions
+@model Reguleringsplanbestemmelser
+
+@if (Model.Planhensikt != null)
+{
+    <div class="section">
+        @Html.RenderHeader(Model.Planhensikt.Nummerering, Model.Planhensikt.Overskrift)
+
+        @if (!string.IsNullOrWhiteSpace(Model.Planhensikt.Tekst?.TekstInnhold))
+        {
+            <p class="text-content">@Html.Raw(Model.Planhensikt.Tekst.TekstInnhold)</p>
+        }
+    </div>
+}
