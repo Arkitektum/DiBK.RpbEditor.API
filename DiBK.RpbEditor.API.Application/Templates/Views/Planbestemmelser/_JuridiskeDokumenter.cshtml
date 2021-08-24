@@ -1,7 +1,8 @@
 @using DiBK.RpbEditor.Application.Models.DTO
+@using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
 @model Reguleringsplanbestemmelser
 
-@if (Model.JuridiskeDokumenter?.Any() ?? false)
+@if (HasValue(Model.JuridiskeDokumenter))
 {
     <h2>Juridiske dokumenter</h2>
 
@@ -12,7 +13,7 @@
         <div class="section">
             <h3>@dokument.Tittel</h3>
 
-            @if (!string.IsNullOrWhiteSpace(dokument.Dokumentreferanse))
+            @if (HasValue(dokument.Dokumentreferanse))
             {
                 <div class="row">
                     <div class="col-4">Dokumentreferanse:</div>
@@ -20,12 +21,12 @@
                 </div>
             }
 
-            @if (!string.IsNullOrWhiteSpace(dokument.Sammendrag))
+            @if (HasValue(dokument.Sammendrag))
             {
                 <p class="text-content">@Html.Raw(dokument.Sammendrag)</p>
             }
 
-            @if (!string.IsNullOrWhiteSpace(dokument.Rapportnummer))
+            @if (HasValue(dokument.Rapportnummer))
             {
                 <div class="row">
                     <div class="col-4">Rapportnummer:</div>

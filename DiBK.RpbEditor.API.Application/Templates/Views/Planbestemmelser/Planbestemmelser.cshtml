@@ -1,5 +1,6 @@
 @using DiBK.RpbEditor.Application.Models.DTO
-@using DiBK.RpbEditor.Application.Extensions
+@using DiBK.RpbEditor.Application.Helpers
+@using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
 @model Reguleringsplanbestemmelser
 <!doctype html>
 <html lang="no">
@@ -20,6 +21,12 @@
     </style>
 </head>
 <body>
+    @{
+        var plannavn = HasValue(Model.Plannavn) ? Model.Plannavn : "<Ikke angitt>";
+        var planId = HasValue(Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer) && HasValue(Model.NasjonalArealplanId.Planidentifikasjon) ? 
+            $"{Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer}_{Model.NasjonalArealplanId.Planidentifikasjon}" : 
+            "<Ikke angitt>";
+    }
     <div class="sheet">
         <div class="header">
             <div class="title">
@@ -27,8 +34,8 @@
                 <span>(jf. plan- og bygningslovens (pbl) kap. 12)</span>
             </div>
             <div class="info">
-                @Model.Plannavn<br />
-                Nasjonal arealplan-ID: @(Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer)_@(Model.NasjonalArealplanId.Planidentifikasjon)
+                @plannavn<br />
+                @planId
             </div>
         </div>
 

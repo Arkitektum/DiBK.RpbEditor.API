@@ -23,7 +23,7 @@ namespace DiBK.RpbEditor.Controllers
             {
                 CouldNotDeserializeXmlException ex => BadRequest(ex.Message),
                 CouldNotValidateException ex => BadRequest(ex.Message),
-                Exception => BadRequest(),
+                Exception => BadRequest("En systemfeil har oppstått."),
                 _ => null,
             };
         }

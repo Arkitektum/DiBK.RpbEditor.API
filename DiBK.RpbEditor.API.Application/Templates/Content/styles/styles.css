@@ -69,10 +69,12 @@
 
     h3 {
         font-size: 16px;
+        margin-bottom: 15px;
     }
 
     h4, h5 {
         font-size: 14px;
+        margin-bottom: 15px;
     }
 
     /*strong {
@@ -103,7 +105,7 @@
         }
 
     .section {
-        margin-bottom: 24px;
+        margin-bottom: 32px;
     }
 
         .section:last-child {
@@ -111,12 +113,13 @@
         }
 
     .text-content {
-        margin-top: 20px;
+        margin-bottom: 15px;
     }
 
-    .numbering {
-        width: 60px;
-        display: inline-block;
+    .more-info {
+        border-top: 1px dashed #c7c7c7;
+        padding-top: 10px;
+        margin-bottom: 15px;
     }
 
     .text span {

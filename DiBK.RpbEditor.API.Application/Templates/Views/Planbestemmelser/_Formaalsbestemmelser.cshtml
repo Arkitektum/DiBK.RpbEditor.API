@@ -1,8 +1,9 @@
 @using DiBK.RpbEditor.Application.Models.DTO
-@using DiBK.RpbEditor.Application.Extensions
+@using DiBK.RpbEditor.Application.Helpers
+@using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
 @model Reguleringsplanbestemmelser
 
-@if (Model.Formålsbestemmelser?.Any() ?? false)
+@if (HasValue(Model.Formålsbestemmelser))
 {
     var formålsbestemmelser = Model.Formålsbestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
 
@@ -11,37 +12,48 @@
         <div class="section">
             @Html.RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
 
-            @if (!string.IsNullOrWhiteSpace(bestemmelse.Tekst?.TekstInnhold))
+            @if (HasValue(bestemmelse.Tekst?.TekstInnhold))
             {
                 <p class="text-content">@Html.Raw(bestemmelse.Tekst.TekstInnhold)</p>
             }
 
-            <div class="row">
-                <div class="col-4">Gjelder hovedformål:</div>
-                <div class="col-8">@bestemmelse.GjelderHovedformål?.Kodebeskrivelse</div>
-            </div>
-
-            @if (bestemmelse.Feltnavn?.Any() ?? false)
+            @if (HasValue(bestemmelse.GjelderHovedformål?.Kodebeskrivelse) ||
+               HasValue(bestemmelse.Feltnavn) ||
+               HasValue(bestemmelse.BestemmelseOmrådenavn) ||
+               HasValue(bestemmelse.Objektnavn))
             {
-                <div class="row">
-                    <div class="col-4">Gjelder felter:</div>
-                    <div class="col-8">@string.Join(", ", bestemmelse.Feltnavn)</div>
-                </div>
-            }
+                <div class="more-info">
+                    @if (HasValue(bestemmelse.GjelderHovedformål?.Kodebeskrivelse))
+                    {
+                        <div class="row">
+                            <div class="col-4">Gjelder hovedformål:</div>
+                            <div class="col-8">@bestemmelse.GjelderHovedformål.Kodebeskrivelse</div>
+                        </div>
+                    }
 
-            @if (bestemmelse.BestemmelseOmrådenavn?.Any() ?? false)
-            {
-                <div class="row">
-                    <div class="col-4">Gjelder bestemmelsesområder:</div>
-                    <div class="col-8">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
-                </div>
-            }
+                    @if (HasValue(bestemmelse.Feltnavn))
+                    {
+                        <div class="row">
+                            <div class="col-4">Gjelder felter:</div>
+                            <div class="col-8">@string.Join(", ", bestemmelse.Feltnavn)</div>
+                        </div>
+                    }
 
-            @if (bestemmelse.Objektnavn?.Any() ?? false)
-            {
-                <div class="row">
-                    <div class="col-4">Gjelder objekter:</div>
-                    <div class="col-8">@string.Join(", ", bestemmelse.Objektnavn)</div>
+                    @if (HasValue(bestemmelse.BestemmelseOmrådenavn))
+                    {
+                        <div class="row">
+                            <div class="col-4">Gjelder bestemmelsesområder:</div>
+                            <div class="col-8">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
+                        </div>
+                    }
+
+                    @if (HasValue(bestemmelse.Objektnavn))
+                    {
+                        <div class="row">
+                            <div class="col-4">Gjelder objekter:</div>
+                            <div class="col-8">@string.Join(", ", bestemmelse.Objektnavn)</div>
+                        </div>
+                    }
                 </div>
             }
         </div>

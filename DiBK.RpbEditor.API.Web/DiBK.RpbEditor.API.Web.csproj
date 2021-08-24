@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiBK.RpbEditor.Application\DiBK.RpbEditor.Application.csproj" />
+    <ProjectReference Include="..\DiBK.RpbEditor.API.Application\DiBK.RpbEditor.API.Application.csproj" />
   </ItemGroup>
 
 </Project>

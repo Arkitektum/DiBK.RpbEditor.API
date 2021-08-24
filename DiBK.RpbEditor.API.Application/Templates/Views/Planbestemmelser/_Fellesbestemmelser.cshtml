@@ -1,8 +1,9 @@
 @using DiBK.RpbEditor.Application.Models.DTO
-@using DiBK.RpbEditor.Application.Extensions
+@using DiBK.RpbEditor.Application.Helpers
+@using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
 @model Reguleringsplanbestemmelser
 
-@if (Model.Fellesbestemmelser?.Any() ?? false)
+@if (HasValue(Model.Fellesbestemmelser))
 {
     var fellesbestemmelser = Model.Fellesbestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
 
@@ -11,7 +12,7 @@
         <div class="section">
             @Html.RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
 
-            @if (!string.IsNullOrWhiteSpace(bestemmelse.Tekst?.TekstInnhold))
+            @if (HasValue(bestemmelse.Tekst?.TekstInnhold))
             {
                 <p class="text-content">@Html.Raw(bestemmelse.Tekst.TekstInnhold)</p>
             }

@@ -14,7 +14,7 @@ namespace DiBK.RpbEditor
 {
     public class Startup
     {
-        private static readonly Assembly _applicationAssembly = Assembly.Load("DiBK.RpbEditor.Application");
+        private static readonly Assembly _applicationAssembly = Assembly.Load("DiBK.RpbEditor.API.Application");
 
         public Startup(IConfiguration configuration)
         {

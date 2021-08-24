@@ -1,5 +1,6 @@
 @using DiBK.RpbEditor.Application.Models.DTO
-@using DiBK.RpbEditor.Application.Extensions
+@using DiBK.RpbEditor.Application.Helpers
+@using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
 @model Reguleringsplanbestemmelser
 
 @if (Model.Planhensikt != null)
@@ -7,7 +8,7 @@
     <div class="section">
         @Html.RenderHeader(Model.Planhensikt.Nummerering, Model.Planhensikt.Overskrift)
 
-        @if (!string.IsNullOrWhiteSpace(Model.Planhensikt.Tekst?.TekstInnhold))
+        @if (HasValue(Model.Planhensikt.Tekst?.TekstInnhold))
         {
             <p class="text-content">@Html.Raw(Model.Planhensikt.Tekst.TekstInnhold)</p>
         }

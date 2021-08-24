@@ -1,8 +1,9 @@
 @using DiBK.RpbEditor.Application.Models.DTO
-@using DiBK.RpbEditor.Application.Extensions
+@using DiBK.RpbEditor.Application.Helpers
+@using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
 @model Reguleringsplanbestemmelser
 
-@if (Model.Hensynsbestemmelser?.Any() ?? false)
+@if (HasValue(Model.Hensynsbestemmelser))
 {
     var hensynsbestemmelser = Model.Hensynsbestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
 
@@ -11,21 +12,29 @@
         <div class="section">
             @Html.RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
 
-            @if (!string.IsNullOrWhiteSpace(bestemmelse.Tekst?.TekstInnhold))
+            @if (HasValue(bestemmelse.Tekst?.TekstInnhold))
             {
                 <p class="text-content">@Html.Raw(bestemmelse.Tekst.TekstInnhold)</p>
             }
 
-            <div class="row">
-                <div class="col-4">Hensynskategori:</div>
-                <div class="col-8">@bestemmelse.Hensynskategori?.Kodebeskrivelse</div>
-            </div>
-
-            @if (bestemmelse.HensynSonenavn?.Any() ?? false)
+            @if (HasValue(bestemmelse.Hensynskategori?.Kodebeskrivelse) || HasValue(bestemmelse.HensynSonenavn))
             {
-                <div class="row">
-                    <div class="col-4">Gjelder hensynssoner:</div>
-                    <div class="col-8">@string.Join(", ", bestemmelse.HensynSonenavn)</div>
+                <div class="more-info">
+                    @if (HasValue(bestemmelse.Hensynskategori?.Kodebeskrivelse))
+                    {
+                        <div class="row">
+                            <div class="col-4">Hensynskategori:</div>
+                            <div class="col-8">@bestemmelse.Hensynskategori.Kodebeskrivelse</div>
+                        </div>
+                    }
+
+                    @if (HasValue(bestemmelse.HensynSonenavn))
+                    {
+                        <div class="row">
+                            <div class="col-4">Gjelder hensynssoner:</div>
+                            <div class="col-8">@string.Join(", ", bestemmelse.HensynSonenavn)</div>
+                        </div>
+                    }
                 </div>
             }
         </div>
