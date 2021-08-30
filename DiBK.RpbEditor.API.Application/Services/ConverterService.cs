@@ -73,6 +73,13 @@ namespace DiBK.RpbEditor.Application.Services
             );
         }
 
+        public async Task<string> ToHtml(Stream xmlStream)
+        {
+            var model = FromXml(xmlStream);
+
+            return await ToHtml(model);
+        }
+
         public async Task<byte[]> ToPdf(Reguleringsplanbestemmelser reguleringsplanbestemmelser)
         {
             SetSortOrder(reguleringsplanbestemmelser);
@@ -81,6 +88,13 @@ namespace DiBK.RpbEditor.Application.Services
             var html = await ToHtml(reguleringsplanbestemmelser);
 
             return await _pdfService.GeneratePdf(html);
+        }
+
+        public async Task<byte[]> ToPdf(Stream xmlStream)
+        {
+            var model = FromXml(xmlStream);
+
+            return await ToPdf(model);
         }
 
         private static string SerializeXML<T>(T model, XmlSerializerNamespaces namespaces) where T : class

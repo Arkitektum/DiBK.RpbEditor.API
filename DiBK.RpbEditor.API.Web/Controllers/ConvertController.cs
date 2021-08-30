@@ -21,8 +21,8 @@ namespace DiBK.RpbEditor.Controllers
             _converterService = converterService;
         }
 
-        [HttpPost("FromXml")]
-        public IActionResult FromXml(IFormFile file)
+        [HttpPost("ModelFromXml")]
+        public IActionResult ModelFromXml(IFormFile file)
         {
             try
             {
@@ -44,8 +44,8 @@ namespace DiBK.RpbEditor.Controllers
             }
         }
 
-        [HttpPost("ToXml")]
-        public async Task<IActionResult> ToXml(Reguleringsplanbestemmelser model)
+        [HttpPost("ModelToXml")]
+        public async Task<IActionResult> ModelToXml(Reguleringsplanbestemmelser model)
         {
             try
             {
@@ -72,8 +72,8 @@ namespace DiBK.RpbEditor.Controllers
             }
         }
 
-        [HttpPost("ToHtml")]
-        public async Task<IActionResult> ToHtml(Reguleringsplanbestemmelser model)
+        [HttpPost("ModelToHtml")]
+        public async Task<IActionResult> ModelToHtml(Reguleringsplanbestemmelser model)
         {
             try
             {
@@ -98,8 +98,8 @@ namespace DiBK.RpbEditor.Controllers
             }
         }
 
-        [HttpPost("ToPdf")]
-        public async Task<IActionResult> ToPdf(Reguleringsplanbestemmelser model)
+        [HttpPost("ModelToPdf")]
+        public async Task<IActionResult> ModelToPdf(Reguleringsplanbestemmelser model)
         {
             try
             {
@@ -112,6 +112,58 @@ namespace DiBK.RpbEditor.Controllers
                     return BadRequest();
 
                 return new FileContentResult(pdfData, "application/octet-stream");
+            }
+            catch (Exception exception)
+            {
+                var result = HandleException(exception);
+
+                if (result != null)
+                    return result;
+
+                throw;
+            }
+        }
+
+        [HttpPost("XmlToPdf")]
+        public async Task<IActionResult> XmlToPdf(IFormFile file)
+        {
+            try
+            {
+                if (file == null)
+                    return BadRequest();
+
+                var pdfData = await _converterService.ToPdf(file.OpenReadStream());
+
+                if (pdfData == null)
+                    return BadRequest();
+
+                return new FileContentResult(pdfData, "application/octet-stream");
+            }
+            catch (Exception exception)
+            {
+                var result = HandleException(exception);
+
+                if (result != null)
+                    return result;
+
+                throw;
+            }
+        }
+
+        [HttpPost("XmlToHtml")]
+        public async Task<IActionResult> XmlToHtml(IFormFile file)
+        {
+            try
+            {
+                if (file == null)
+                    return BadRequest();
+
+                var html = await _converterService.ToHtml(file.OpenReadStream());
+
+                if (html == null)
+                    return BadRequest();
+
+                return new ContentResult { ContentType = "text/html", Content = html };
             }
             catch (Exception exception)
             {
