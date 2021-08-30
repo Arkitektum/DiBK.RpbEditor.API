@@ -1,7 +1,7 @@
 @using DiBK.RpbEditor.Application.Models.DTO
-@using DiBK.RpbEditor.Application.Helpers
 @using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
-@model Reguleringsplanbestemmelser
+@using RazorLight
+@inherits TemplatePage<Reguleringsplanbestemmelser>
 <!doctype html>
 <html lang="no">
 <head>
@@ -23,8 +23,8 @@
 <body>
     @{
         var plannavn = HasValue(Model.Plannavn) ? Model.Plannavn : "<Ikke angitt>";
-        var planId = HasValue(Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer) && HasValue(Model.NasjonalArealplanId.Planidentifikasjon) ? 
-            $"{Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer}_{Model.NasjonalArealplanId.Planidentifikasjon}" : 
+        var planId = HasValue(Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer) && HasValue(Model.NasjonalArealplanId.Planidentifikasjon) ?
+            $"{Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer}_{Model.NasjonalArealplanId.Planidentifikasjon}" :
             "<Ikke angitt>";
     }
     <div class="sheet">
@@ -43,21 +43,21 @@
             Reguleringsbestemmelser <span>(pbl §12-7)</span>
         </h1>
 
-        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Planhensikt.cshtml")
+        @{ await IncludeAsync("Planbestemmelser._Planhensikt.cshtml", Model); }
 
-        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Fellesbestemmelser.cshtml")
+        @{ await IncludeAsync("Planbestemmelser._Fellesbestemmelser.cshtml", Model); }
 
-        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Formaalsbestemmelser.cshtml")
+        @{ await IncludeAsync("Planbestemmelser._Formaalsbestemmelser.cshtml", Model); }
 
-        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Hensynsbestemmelser.cshtml")
+        @{ await IncludeAsync("Planbestemmelser._Hensynsbestemmelser.cshtml", Model); }
 
-        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Omraadebestemmelser.cshtml")
+        @{ await IncludeAsync("Planbestemmelser._Omraadebestemmelser.cshtml", Model); }
 
-        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_Rekkefoelgebestemmelser.cshtml")
+        @{ await IncludeAsync("Planbestemmelser._Rekkefoelgebestemmelser.cshtml", Model); }
 
-        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_KravOmDetaljregulering.cshtml")
+        @{ await IncludeAsync("Planbestemmelser._KravOmDetaljregulering.cshtml", Model); }
 
-        @await Html.RenderViewAsync("~/Templates/Views/Planbestemmelser/_JuridiskeDokumenter.cshtml")
+        @{ await IncludeAsync("Planbestemmelser._JuridiskeDokumenter.cshtml", Model); }
     </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 @using DiBK.RpbEditor.Application.Models.DTO
 @using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
-@model Reguleringsplanbestemmelser
+@using RazorLight
+@inherits TemplatePage<Reguleringsplanbestemmelser>
 
 @if (HasValue(Model.KravOmDetaljregulering))
 {
@@ -40,7 +41,7 @@
 
             @if (HasValue(krav.KravTilDetaljreguleringen?.TekstInnhold))
             {
-                <p class="text-content">@Html.Raw(krav.KravTilDetaljreguleringen.TekstInnhold)</p>
+                <p class="text-content">@Raw(krav.KravTilDetaljreguleringen.TekstInnhold)</p>
             }
         </div>
     }

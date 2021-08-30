@@ -1,11 +1,5 @@
 ﻿using HtmlAgilityPack;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MimeDetective.InMemory;
 using System;
 using System.IO;
@@ -17,54 +11,26 @@ namespace DiBK.RpbEditor.Application.Services
 {
     public class TemplatingService : ITemplatingService
     {
-        private readonly IActionContextAccessor _actionContextAccessor;
-        private readonly IRazorViewEngine _viewEngine;
-        private readonly ITempDataProvider _tempDataProvider;
-        private readonly TemplatingSettings _settings;
+        private readonly ITemplatingSettings _settings;
         private readonly ILogger<TemplatingService> _logger;
         public HttpClient HttpClient { get; }
 
         public TemplatingService(
-            IActionContextAccessor actionContextAccessor,
-            IRazorViewEngine viewEngine,
-            ITempDataProvider tempDataProvider,
             HttpClient httpClient,
-            IOptions<TemplatingSettings> options,
+            ITemplatingSettings settings,
             ILogger<TemplatingService> logger)
         {
-            _actionContextAccessor = actionContextAccessor;
-            _viewEngine = viewEngine;
-            _tempDataProvider = tempDataProvider;
             HttpClient = httpClient;
-            _settings = options.Value;
+            _settings = settings;
             _logger = logger;
         }
 
         public async Task<string> RenderViewAsync<T>(string viewName, T model) where T : class
         {
-            var actionContext = _actionContextAccessor.ActionContext;
-            var viewEngineResult = _viewEngine.GetView("~/", viewName, false);
-
-            if (!viewEngineResult.Success)
-                throw new InvalidOperationException($"Kan ikke finne view '{viewName}'");
-
-            var view = viewEngineResult.View;
-
-            using var output = new StringWriter();
-
-            var viewContext = new ViewContext(
-                actionContext,
-                view,
-                new ViewDataDictionary<T>(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = model },
-                new TempDataDictionary(actionContext.HttpContext, _tempDataProvider),
-                output,
-                new HtmlHelperOptions()
-            );
-
-            await view.RenderAsync(viewContext);
+            var output = await _settings.Engine.CompileRenderAsync(viewName, model);
 
             var document = new HtmlDocument();
-            document.LoadHtml(output.ToString());
+            document.LoadHtml(output);
 
             await InlineStylesheets(document);
             await Base64EncodeImages(document);

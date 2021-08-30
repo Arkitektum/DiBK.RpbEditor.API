@@ -1,6 +1,7 @@
 @using DiBK.RpbEditor.Application.Models.DTO
 @using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
-@model Reguleringsplanbestemmelser
+@using RazorLight
+@inherits TemplatePage<Reguleringsplanbestemmelser>
 
 @if (HasValue(Model.JuridiskeDokumenter))
 {
@@ -23,7 +24,7 @@
 
             @if (HasValue(dokument.Sammendrag))
             {
-                <p class="text-content">@Html.Raw(dokument.Sammendrag)</p>
+                <p class="text-content">@Raw(dokument.Sammendrag)</p>
             }
 
             @if (HasValue(dokument.Rapportnummer))

@@ -1,16 +1,16 @@
 @using DiBK.RpbEditor.Application.Models.DTO
-@using DiBK.RpbEditor.Application.Helpers
 @using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
-@model Reguleringsplanbestemmelser
+@using RazorLight
+@inherits TemplatePage<Reguleringsplanbestemmelser>
 
 @if (Model.Planhensikt != null)
 {
     <div class="section">
-        @Html.RenderHeader(Model.Planhensikt.Nummerering, Model.Planhensikt.Overskrift)
+        @RenderHeader(Model.Planhensikt.Nummerering, Model.Planhensikt.Overskrift)
 
         @if (HasValue(Model.Planhensikt.Tekst?.TekstInnhold))
         {
-            <p class="text-content">@Html.Raw(Model.Planhensikt.Tekst.TekstInnhold)</p>
+            <p class="text-content">@Raw(Model.Planhensikt.Tekst.TekstInnhold)</p>
         }
     </div>
 }

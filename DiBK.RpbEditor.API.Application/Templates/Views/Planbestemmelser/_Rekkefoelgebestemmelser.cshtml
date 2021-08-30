@@ -1,7 +1,7 @@
 @using DiBK.RpbEditor.Application.Models.DTO
-@using DiBK.RpbEditor.Application.Helpers
 @using static DiBK.RpbEditor.API.Application.Helpers.TemplatingHelpers
-@model Reguleringsplanbestemmelser
+@using RazorLight
+@inherits TemplatePage<Reguleringsplanbestemmelser>
 
 @if (HasValue(Model.Rekkefølgebestemmelser))
 {
@@ -10,18 +10,18 @@
     @foreach (var bestemmelse in rekkefølgebestemmelser)
     {
         <div class="section">
-            @Html.RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
+            @RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
 
             @if (HasValue(bestemmelse.Tekst?.TekstInnhold))
             {
-                <p class="text-content">@Html.Raw(bestemmelse.Tekst.TekstInnhold)</p>
+                <p class="text-content">@Raw(bestemmelse.Tekst.TekstInnhold)</p>
             }
 
             @if (HasValue(bestemmelse.Rekkefølgeangivelse?.Kodebeskrivelse) ||
-              HasValue(bestemmelse.BestemmelseOmrådenavn) ||
-              HasValue(bestemmelse.Feltnavn) ||
-              HasValue(bestemmelse.HensynSonenavn) ||
-              HasValue(bestemmelse.Objektnavn))
+             HasValue(bestemmelse.BestemmelseOmrådenavn) ||
+             HasValue(bestemmelse.Feltnavn) ||
+             HasValue(bestemmelse.HensynSonenavn) ||
+             HasValue(bestemmelse.Objektnavn))
             {
                 <div class="more-info">
                     @if (HasValue(bestemmelse.Rekkefølgeangivelse?.Kodebeskrivelse))

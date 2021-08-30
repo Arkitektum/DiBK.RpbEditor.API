@@ -21,15 +21,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Templates\Content\styles\bootstrap.min.css" />
     <EmbeddedResource Include="Templates\Content\styles\styles.css" />
-    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Planhensikt.cshtml" />
-    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_JuridiskeDokumenter.cshtml" />
-    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Rekkefoelgebestemmelser.cshtml" />
-    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Omraadebestemmelser.cshtml" />
-    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Hensynsbestemmelser.cshtml" />
-    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Formaalsbestemmelser.cshtml" />
-    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Fellesbestemmelser.cshtml" />
-    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_KravOmDetaljregulering.cshtml" />
     <EmbeddedResource Include="Templates\Views\Planbestemmelser\Planbestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Fellesbestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Formaalsbestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Hensynsbestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_JuridiskeDokumenter.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_KravOmDetaljregulering.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Omraadebestemmelser.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Planhensikt.cshtml" />
+    <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Rekkefoelgebestemmelser.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +41,7 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="MimeDetective.InMemory" Version="0.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RazorLight" Version="2.0.0-rc.3" />
   </ItemGroup>
 
   <ItemGroup>

@@ -68,7 +68,7 @@ namespace DiBK.RpbEditor.Application.Services
             await SetCodeListDescriptions(reguleringsplanbestemmelser);
 
             return await _templatingService.RenderViewAsync(
-                "~/Templates/Views/Planbestemmelser/Planbestemmelser.cshtml",
+                "Planbestemmelser.Planbestemmelser.cshtml",
                 reguleringsplanbestemmelser
             );
         }

@@ -1,3 +1,4 @@
+using DiBK.RpbEditor.API.Application.Services;
 using DiBK.RpbEditor.Application.Configuration;
 using DiBK.RpbEditor.Application.Services;
 using DiBK.RpbEditor.Web.Configuration;
@@ -27,7 +28,7 @@ namespace DiBK.RpbEditor
         {
             services.AddCors();
 
-            var mvcBuilder = services.AddControllersWithViews();
+            services.AddControllersWithViews();
 
             services.AddRazorPages();
 
@@ -36,7 +37,12 @@ namespace DiBK.RpbEditor
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlanbestemmelserEditor", Version = "v1" });
             });
 
-            services.AddTemplating(mvcBuilder, options => options.TemplateAssembly = _applicationAssembly);
+            services.AddTemplating(settings =>
+            {
+                settings.TemplateAssembly = _applicationAssembly;
+                settings.RootNamespace = "DiBK.RpbEditor.API.Application.Templates.Views";
+            });
+
             services.AddPdfGenerator(Configuration);
 
             services.AddAutoMapper(config =>
@@ -48,11 +54,9 @@ namespace DiBK.RpbEditor
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddTransient<IConverterService, ConverterService>();
-            services.AddTransient<ICodeListService, CodeListService>();
-            services.AddTransient<IValidationService, ValidationService>();
 
-            services.AddHttpClient<CodeListService>();
-            services.AddHttpClient<ValidationService>();
+            services.AddHttpClient<ICodeListService, CodeListService>();
+            services.AddHttpClient<IValidationService, ValidationService>();
 
             services.Configure<CodeListSettings>(Configuration.GetSection(CodeListSettings.SectionName));
         }
