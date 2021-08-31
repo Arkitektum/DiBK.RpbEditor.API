@@ -1,6 +1,8 @@
 ﻿using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MimeDetective.InMemory;
+using RazorLight;
 using System;
 using System.IO;
 using System.Linq;
@@ -11,31 +13,47 @@ namespace DiBK.RpbEditor.Application.Services
 {
     public class TemplatingService : ITemplatingService
     {
-        private readonly ITemplatingSettings _settings;
+        private readonly TemplatingSettings _settings;
+        private readonly RazorLightEngine _engine;
         private readonly ILogger<TemplatingService> _logger;
         public HttpClient HttpClient { get; }
 
         public TemplatingService(
             HttpClient httpClient,
-            ITemplatingSettings settings,
+            RazorLightEngine engine,
+            IOptions<TemplatingSettings> options,
             ILogger<TemplatingService> logger)
         {
             HttpClient = httpClient;
-            _settings = settings;
+            _engine = engine;
+            _settings = options.Value;
             _logger = logger;
         }
 
         public async Task<string> RenderViewAsync<T>(string viewName, T model) where T : class
-        {
-            var output = await _settings.Engine.CompileRenderAsync(viewName, model);
-
+        {                        
+            var htmlString = await GenerateHtmlAsync(viewName, model);
             var document = new HtmlDocument();
-            document.LoadHtml(output);
+
+            document.LoadHtml(htmlString);
 
             await InlineStylesheets(document);
             await Base64EncodeImages(document);
 
             return document.DocumentNode.OuterHtml;
+        }
+
+        private async Task<string> GenerateHtmlAsync<T>(string viewName, T model) where T : class
+        {
+            var cacheResult = _engine.Handler.Cache.RetrieveTemplate(viewName);
+
+            if (cacheResult.Success)
+            {
+                var templatePage = cacheResult.Template.TemplatePageFactory();
+                return await _engine.RenderTemplateAsync(templatePage, model);
+            }
+            
+            return await _engine.CompileRenderAsync(viewName, model);
         }
 
         private async Task InlineStylesheets(HtmlDocument document)

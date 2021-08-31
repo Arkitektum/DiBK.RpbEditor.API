@@ -10,6 +10,8 @@ namespace DiBK.RpbEditor.API.Application.Services
     {
         public static void AddTemplating(this IServiceCollection services, Action<TemplatingSettings> settings)
         {
+            services.Configure(settings);
+
             var templatingSettings = new TemplatingSettings();
             settings.Invoke(templatingSettings);
 
@@ -17,10 +19,8 @@ namespace DiBK.RpbEditor.API.Application.Services
                 .UseEmbeddedResourcesProject(templatingSettings.TemplateAssembly, templatingSettings.RootNamespace)
                 .UseMemoryCachingProvider()
                 .Build();
-
-            templatingSettings.Engine = engine;
-
-            services.AddSingleton<ITemplatingSettings>(templatingSettings);
+            
+            services.AddSingleton(engine);
 
             services.AddHttpClient<ITemplatingService, TemplatingService>(client =>
             {
