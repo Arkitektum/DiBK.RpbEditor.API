@@ -51,7 +51,8 @@ namespace DiBK.RpbEditor.Application.Configuration
             CreateMap<Rekkefølgebestemmelse, BestemmelseRekkefoelgeType>()
                 .ForMember(dest => dest.VersjonsdatoValue, opt => opt.MapFrom(src => src.Versjonsdato));
 
-            CreateMap<JuridiskDokument, JuridiskBindendeDokumentType>();
+            CreateMap<JuridiskDokument, JuridiskBindendeDokumentType>()
+                .ForMember(dest => dest.DokumentetsDatoValue, opt => opt.MapFrom(src => src.DokumentetsDato));
         }
     }
 
