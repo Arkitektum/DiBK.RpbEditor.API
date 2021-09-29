@@ -40,9 +40,9 @@ namespace DiBK.RpbEditor.Application.Services
             {
                 model = DeserializeXML<ReguleringsplanbestemmelserType>(xmlStream);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw new CouldNotDeserializeXmlException("Ugyldig XML");
+                throw new CouldNotDeserializeXmlException("Ugyldig XML", exception);
             }
 
             return _mapper.Map<Reguleringsplanbestemmelser>(model);

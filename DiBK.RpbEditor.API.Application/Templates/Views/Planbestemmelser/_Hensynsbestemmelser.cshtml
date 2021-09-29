@@ -3,7 +3,7 @@
 @using RazorLight
 @inherits TemplatePage<Reguleringsplanbestemmelser>
 
-@if (HasValue(Model.Hensynsbestemmelser))
+@if (HasItems(Model.Hensynsbestemmelser))
 {
     var hensynsbestemmelser = Model.Hensynsbestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
 
@@ -17,22 +17,22 @@
                 <p class="text-content">@Raw(bestemmelse.Tekst.TekstInnhold)</p>
             }
 
-            @if (HasValue(bestemmelse.Hensynskategori?.Kodebeskrivelse) || HasValue(bestemmelse.HensynSonenavn))
+            @if (HasValue(bestemmelse.Hensynskategori?.Kodebeskrivelse) || HasItems(bestemmelse.HensynSonenavn))
             {
                 <div class="more-info">
                     @if (HasValue(bestemmelse.Hensynskategori?.Kodebeskrivelse))
                     {
                         <div class="row">
-                            <div class="col-4">Hensynskategori:</div>
-                            <div class="col-8">@bestemmelse.Hensynskategori.Kodebeskrivelse</div>
+                            <div class="col-3">Hensynskategori:</div>
+                            <div class="col-9">@bestemmelse.Hensynskategori.Kodebeskrivelse</div>
                         </div>
                     }
 
-                    @if (HasValue(bestemmelse.HensynSonenavn))
+                    @if (HasItems(bestemmelse.HensynSonenavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder hensynssoner:</div>
-                            <div class="col-8">@string.Join(", ", bestemmelse.HensynSonenavn)</div>
+                            <div class="col-3">Hensynssoner:</div>
+                            <div class="col-9">@string.Join(", ", bestemmelse.HensynSonenavn)</div>
                         </div>
                     }
                 </div>

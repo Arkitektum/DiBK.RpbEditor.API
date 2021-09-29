@@ -3,14 +3,14 @@
 @using RazorLight
 @inherits TemplatePage<Reguleringsplanbestemmelser>
 
-@if (HasValue(Model.Rekkefølgebestemmelser))
+@if (HasItems(Model.Rekkefølgebestemmelser))
 {
     var rekkefølgebestemmelser = Model.Rekkefølgebestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
 
     @foreach (var bestemmelse in rekkefølgebestemmelser)
     {
         <div class="section">
-            @RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
+            @RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift, bestemmelse.Feltnavn)
 
             @if (HasValue(bestemmelse.Tekst?.TekstInnhold))
             {
@@ -18,49 +18,49 @@
             }
 
             @if (HasValue(bestemmelse.Rekkefølgeangivelse?.Kodebeskrivelse) ||
-             HasValue(bestemmelse.BestemmelseOmrådenavn) ||
-             HasValue(bestemmelse.Feltnavn) ||
-             HasValue(bestemmelse.HensynSonenavn) ||
-             HasValue(bestemmelse.Objektnavn))
+             HasItems(bestemmelse.BestemmelseOmrådenavn) ||
+             HasItems(bestemmelse.Feltnavn) ||
+             HasItems(bestemmelse.HensynSonenavn) ||
+             HasItems(bestemmelse.Objektnavn))
             {
                 <div class="more-info">
                     @if (HasValue(bestemmelse.Rekkefølgeangivelse?.Kodebeskrivelse))
                     {
                         <div class="row">
-                            <div class="col-4">Rekkefølgeangivelse:</div>
-                            <div class="col-8">@bestemmelse.Rekkefølgeangivelse.Kodebeskrivelse</div>
+                            <div class="col-3">Rekkefølgeangivelse:</div>
+                            <div class="col-9">@bestemmelse.Rekkefølgeangivelse.Kodebeskrivelse</div>
                         </div>
                     }
 
-                    @if (HasValue(bestemmelse.BestemmelseOmrådenavn))
+                    @if (HasItems(bestemmelse.BestemmelseOmrådenavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder bestemmelsesområder:</div>
-                            <div class="col-8">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
+                            <div class="col-3">Bestemmelsesområder:</div>
+                            <div class="col-9">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
                         </div>
                     }
 
-                    @if (HasValue(bestemmelse.Feltnavn))
+                    @if (HasItems(bestemmelse.Feltnavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder felter:</div>
-                            <div class="col-8">@string.Join(", ", bestemmelse.Feltnavn)</div>
+                            <div class="col-3">Felter:</div>
+                            <div class="col-9">@string.Join(", ", bestemmelse.Feltnavn)</div>
                         </div>
                     }
 
-                    @if (HasValue(bestemmelse.HensynSonenavn))
+                    @if (HasItems(bestemmelse.HensynSonenavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder hensynssoner:</div>
-                            <div class="col-8">@string.Join(", ", bestemmelse.HensynSonenavn)</div>
+                            <div class="col-3">Hensynssoner:</div>
+                            <div class="col-9">@string.Join(", ", bestemmelse.HensynSonenavn)</div>
                         </div>
                     }
 
-                    @if (HasValue(bestemmelse.Objektnavn))
+                    @if (HasItems(bestemmelse.Objektnavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder objekter:</div>
-                            <div class="col-8">@string.Join(", ", bestemmelse.Objektnavn)</div>
+                            <div class="col-3">Objekter:</div>
+                            <div class="col-9">@string.Join(", ", bestemmelse.Objektnavn)</div>
                         </div>
                     }
                 </div>

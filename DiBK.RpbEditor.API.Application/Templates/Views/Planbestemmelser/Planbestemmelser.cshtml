@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Reguleringsplan - @Model.Plantype.Kodebeskrivelse.ToLower() | @Model.Plannavn</title>
+    <title>Reguleringsplan &ndash; @Model.Plantype.Kodebeskrivelse | @Model.Plannavn</title>
 
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -30,7 +30,7 @@
     <div class="sheet">
         <div class="header">
             <div class="title">
-                Reguleringsplan - @Model.Plantype.Kodebeskrivelse.ToLower()
+                Reguleringsplan &ndash; @Model.Plantype.Kodebeskrivelse
                 <span>(jf. plan- og bygningslovens (pbl) kap. 12)</span>
             </div>
             <div class="info">
@@ -40,7 +40,7 @@
         </div>
 
         <h1>
-            Reguleringsbestemmelser <span>(pbl §12-7)</span>
+            Reguleringsplanbestemmelser <span>(pbl §12-7)</span>
         </h1>
 
         @{ await IncludeAsync("Planbestemmelser._Planhensikt.cshtml", Model); }

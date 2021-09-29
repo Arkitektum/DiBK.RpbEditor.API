@@ -3,37 +3,37 @@
 @using RazorLight
 @inherits TemplatePage<Reguleringsplanbestemmelser>
 
-@if (HasValue(Model.KravOmDetaljregulering))
+@if (HasItems(Model.KravOmDetaljregulering))
 {
     <h2>Krav om detaljregulering</h2>
 
     @foreach (var krav in Model.KravOmDetaljregulering)
     {
         <div class="section">
-            @if (HasValue(krav.Feltnavn) || HasValue(krav.BestemmelseOmrådenavn) || HasValue(krav.HensynSonenavn))
+            @if (HasItems(krav.Feltnavn) || HasItems(krav.BestemmelseOmrådenavn) || HasItems(krav.HensynSonenavn))
             {
                 <div class="more-info">
-                    @if (HasValue(krav.Feltnavn))
+                    @if (HasItems(krav.Feltnavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder felter:</div>
-                            <div class="col-8">@string.Join(", ", krav.Feltnavn)</div>
+                            <div class="col-3">Felter:</div>
+                            <div class="col-9">@string.Join(", ", krav.Feltnavn)</div>
                         </div>
                     }
 
-                    @if (HasValue(krav.BestemmelseOmrådenavn))
+                    @if (HasItems(krav.BestemmelseOmrådenavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder bestemmelsesområder:</div>
-                            <div class="col-8">@string.Join(", ", krav.BestemmelseOmrådenavn)</div>
+                            <div class="col-3">Bestemmelsesområder:</div>
+                            <div class="col-9">@string.Join(", ", krav.BestemmelseOmrådenavn)</div>
                         </div>
                     }
 
-                    @if (HasValue(krav.HensynSonenavn))
+                    @if (HasItems(krav.HensynSonenavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder hensynssoner:</div>
-                            <div class="col-8">@string.Join(", ", krav.HensynSonenavn)</div>
+                            <div class="col-3">Hensynssoner:</div>
+                            <div class="col-9">@string.Join(", ", krav.HensynSonenavn)</div>
                         </div>
                     }
                 </div>

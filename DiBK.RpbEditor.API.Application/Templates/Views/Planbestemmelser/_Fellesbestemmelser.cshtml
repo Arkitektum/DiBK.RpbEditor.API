@@ -3,7 +3,7 @@
 @using RazorLight
 @inherits TemplatePage<Reguleringsplanbestemmelser>
 
-@if (HasValue(Model.Fellesbestemmelser))
+@if (HasItems(Model.Fellesbestemmelser))
 {
     var fellesbestemmelser = Model.Fellesbestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
 

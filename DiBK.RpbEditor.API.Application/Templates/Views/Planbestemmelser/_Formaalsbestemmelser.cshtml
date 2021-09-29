@@ -3,14 +3,14 @@
 @using RazorLight
 @inherits TemplatePage<Reguleringsplanbestemmelser>
 
-@if (HasValue(Model.Formålsbestemmelser))
+@if (HasItems(Model.Formålsbestemmelser))
 {
     var formålsbestemmelser = Model.Formålsbestemmelser.OrderBy(bestemmelse => bestemmelse.Sorteringsrekkefølge);
 
     @foreach (var bestemmelse in formålsbestemmelser)
     {
         <div class="section">
-            @RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift)
+            @RenderHeader(bestemmelse.Nummerering, bestemmelse.Overskrift, bestemmelse.Feltnavn)
 
             @if (HasValue(bestemmelse.Tekst?.TekstInnhold))
             {
@@ -18,40 +18,40 @@
             }
 
             @if (HasValue(bestemmelse.GjelderHovedformål?.Kodebeskrivelse) ||
-              HasValue(bestemmelse.Feltnavn) ||
-              HasValue(bestemmelse.BestemmelseOmrådenavn) ||
-              HasValue(bestemmelse.Objektnavn))
+             HasItems(bestemmelse.Feltnavn) ||
+             HasItems(bestemmelse.BestemmelseOmrådenavn) ||
+             HasItems(bestemmelse.Objektnavn))
             {
                 <div class="more-info">
                     @if (HasValue(bestemmelse.GjelderHovedformål?.Kodebeskrivelse))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder hovedformål:</div>
-                            <div class="col-8">@bestemmelse.GjelderHovedformål.Kodebeskrivelse</div>
+                            <div class="col-3">Hovedformål:</div>
+                            <div class="col-9">@bestemmelse.GjelderHovedformål.Kodebeskrivelse</div>
                         </div>
                     }
 
-                    @if (HasValue(bestemmelse.Feltnavn))
+                    @if (HasItems(bestemmelse.Feltnavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder felter:</div>
-                            <div class="col-8">@string.Join(", ", bestemmelse.Feltnavn)</div>
+                            <div class="col-3">Felter:</div>
+                            <div class="col-9">@string.Join(", ", bestemmelse.Feltnavn)</div>
                         </div>
                     }
 
-                    @if (HasValue(bestemmelse.BestemmelseOmrådenavn))
+                    @if (HasItems(bestemmelse.BestemmelseOmrådenavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder bestemmelsesområder:</div>
-                            <div class="col-8">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
+                            <div class="col-3">Bestemmelsesområder:</div>
+                            <div class="col-9">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
                         </div>
                     }
 
-                    @if (HasValue(bestemmelse.Objektnavn))
+                    @if (HasItems(bestemmelse.Objektnavn))
                     {
                         <div class="row">
-                            <div class="col-4">Gjelder objekter:</div>
-                            <div class="col-8">@string.Join(", ", bestemmelse.Objektnavn)</div>
+                            <div class="col-3">Objekter:</div>
+                            <div class="col-9">@string.Join(", ", bestemmelse.Objektnavn)</div>
                         </div>
                     }
                 </div>

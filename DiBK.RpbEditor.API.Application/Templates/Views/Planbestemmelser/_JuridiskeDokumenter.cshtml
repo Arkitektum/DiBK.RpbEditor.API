@@ -3,7 +3,7 @@
 @using RazorLight
 @inherits TemplatePage<Reguleringsplanbestemmelser>
 
-@if (HasValue(Model.JuridiskeDokumenter))
+@if (HasItems(Model.JuridiskeDokumenter))
 {
     <h2>Juridiske dokumenter</h2>
 
@@ -17,8 +17,17 @@
             @if (HasValue(dokument.Dokumentreferanse))
             {
                 <div class="row">
-                    <div class="col-4">Dokumentreferanse:</div>
-                    <div class="col-8">@dokument.Dokumentreferanse</div>
+                    <div class="col-3">Dokumentreferanse:</div>
+                    <div class="col-9">
+                        @if (IsUrl(dokument.Dokumentreferanse))
+                        {
+                            <a href="@dokument.Dokumentreferanse" target="_blank">@dokument.Dokumentreferanse</a>
+                        }
+                        else
+                        {
+                            @dokument.Dokumentreferanse
+                        }
+                    </div>
                 </div>
             }
 
@@ -30,14 +39,14 @@
             @if (HasValue(dokument.Rapportnummer))
             {
                 <div class="row">
-                    <div class="col-4">Rapportnummer:</div>
-                    <div class="col-8">@dokument.Rapportnummer</div>
+                    <div class="col-3">Rapportnummer:</div>
+                    <div class="col-9">@dokument.Rapportnummer</div>
                 </div>
             }
 
             <div class="row">
-                <div class="col-4">Dokumentets dato:</div>
-                <div class="col-8">@dokDato</div>
+                <div class="col-3">Dokumentets dato:</div>
+                <div class="col-9">@dokDato</div>
             </div>
         </div>
     }

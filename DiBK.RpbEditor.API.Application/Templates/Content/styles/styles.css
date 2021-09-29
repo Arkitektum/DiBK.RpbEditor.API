@@ -51,6 +51,7 @@
         text-transform: uppercase;
         margin-bottom: 32px;
         line-height: 28px;
+        text-align: center;
     }
 
         h1 span {
@@ -64,17 +65,21 @@
         font-size: 20px;
         border-bottom: 1px solid #ddd;
         padding-bottom: 5px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     h3 {
         font-size: 16px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
     }
 
     h4, h5 {
         font-size: 14px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
+    }
+
+    p:empty {
+        display: none !important;
     }
 
     /*strong {
@@ -130,5 +135,14 @@
     .names {
         white-space: unset;
         margin-top: 5px;
+    }
+
+    .numbering {
+        margin-right: 25px;
+    }
+
+    .field-names {
+        font-size: 12px;
+        margin-left: 5px;
     }
 }
