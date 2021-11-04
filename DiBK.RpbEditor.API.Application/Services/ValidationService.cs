@@ -53,7 +53,7 @@ namespace DiBK.RpbEditor.Application.Services
 
                 var content = await response.Content.ReadAsStringAsync();
                 var jObject = JObject.Parse(content);
-                var validationRules = jObject["validationRules"].ToObject<List<ValidationRule>>();
+                var validationRules = jObject["rules"].ToObject<List<ValidationRule>>();
 
                 return validationRules
                     .Where(rule => rule.Status == "FAILED" || rule.Status == "WARNING")
