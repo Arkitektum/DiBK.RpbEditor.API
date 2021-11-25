@@ -17,6 +17,8 @@
                 <p class="text-content">@Raw(bestemmelse.Tekst.TekstInnhold)</p>
             }
 
+            @RenderVersion(bestemmelse.Versjonsnummer, bestemmelse.Versjonsdato)
+
             @if (HasItems(bestemmelse.BestemmelseOmrådenavn) || HasItems(bestemmelse.Feltnavn) || HasItems(bestemmelse.Objektnavn))
             {
                 <div class="more-info">

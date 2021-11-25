@@ -15,6 +15,8 @@
             @if (HasValue(bestemmelse.Tekst?.TekstInnhold))
             {
                 <p class="text-content">@Raw(bestemmelse.Tekst.TekstInnhold)</p>
+
+                @RenderVersion(bestemmelse.Versjonsnummer, bestemmelse.Versjonsdato)
             }
         </div>
     }

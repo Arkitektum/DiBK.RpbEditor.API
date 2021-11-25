@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Html;
+﻿using DiBK.RpbEditor.Application.Models.DTO;
+using Microsoft.AspNetCore.Html;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -30,6 +32,22 @@ namespace DiBK.RpbEditor.API.Application.Helpers
             var headerHtml = GetHeaderHtml(numbering, headerText, fieldNames);
 
             return new HtmlString(headerHtml);
+        }
+
+        public static HtmlString RenderVersion(string versjonsnummer, DateTime? versjonsdato)
+        {
+            var version = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(versjonsnummer))
+                version.Add(versjonsnummer);
+
+            if (versjonsdato.HasValue)
+                version.Add(versjonsdato.Value.ToString("dd.MM.yyyy"));
+
+            if (!version.Any())
+                return null;
+
+            return new HtmlString($@"<p class=""version"">Versjon: {string.Join(" / ", version)}</p>");
         }
 
         private static string GetHeaderHtml(string numbering, string headerText, IEnumerable<string> fieldNames)

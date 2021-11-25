@@ -122,20 +122,15 @@ namespace DiBK.RpbEditor.Application.Services
 
         private static void SetSortOrder(Reguleringsplanbestemmelser reguleringsplanbestemmelser)
         {
-            static void OrderPlanbestemmelser(IEnumerable<Planbestemmelse> planbestemmelser)
-            {
-                if (planbestemmelser == null)
-                    return;
+            var planbestemmelser = (reguleringsplanbestemmelser.Fellesbestemmelser ?? new List<Fellesbestemmelse>())
+                .Concat<Planbestemmelse>(reguleringsplanbestemmelser.Formålsbestemmelser ?? new List<Formålsbestemmelse>())
+                .Concat(reguleringsplanbestemmelser.Hensynsbestemmelser ?? new List<Hensynsbestemmelse>())
+                .Concat(reguleringsplanbestemmelser.Områdebestemmelser ?? new List<Områdebestemmelse>())
+                .Concat(reguleringsplanbestemmelser.Rekkefølgebestemmelser ?? new List<Rekkefølgebestemmelse>())
+                .ToList();
 
-                for (int i = 0; i < planbestemmelser.Count(); i++)
-                    planbestemmelser.ElementAt(i).Sorteringsrekkefølge = i + 1;
-            }
-
-            OrderPlanbestemmelser(reguleringsplanbestemmelser.Fellesbestemmelser);
-            OrderPlanbestemmelser(reguleringsplanbestemmelser.Formålsbestemmelser);
-            OrderPlanbestemmelser(reguleringsplanbestemmelser.Hensynsbestemmelser);
-            OrderPlanbestemmelser(reguleringsplanbestemmelser.Områdebestemmelser);
-            OrderPlanbestemmelser(reguleringsplanbestemmelser.Rekkefølgebestemmelser);
+            for (int i = 0; i < planbestemmelser.Count; i++)
+                planbestemmelser[i].Sorteringsrekkefølge = i + 1;
         }
 
         private async Task SetCodeListDescriptions(Reguleringsplanbestemmelser reguleringsplanbestemmelser)

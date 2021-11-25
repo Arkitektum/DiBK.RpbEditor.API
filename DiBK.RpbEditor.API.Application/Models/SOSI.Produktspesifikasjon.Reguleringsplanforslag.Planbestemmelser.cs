@@ -64,7 +64,20 @@ namespace SOSI.Produktspesifikasjon.Reguleringsplanforslag.Planbestemmelser
         "anbestemmelser")]
     public partial class ReguleringsplanbestemmelserType
     {
-        
+        [System.Xml.Serialization.XmlAttribute("schemaLocation", Namespace = "http://www.w3.org/2001/XMLSchema-instance")]
+        public string SchemaLocation
+        {
+            get
+            {
+                return "http://skjema.geonorge.no/SOSI/produktspesifikasjon/Reguleringsplanforslag/5.0/Planbestemmelser " +
+                    "http://skjema.geonorge.no/SOSITEST/produktspesifikasjon/Reguleringsplanforslag/5.0/planbestemmelser-5.0_20210602.xsd";
+            }
+            set
+            {
+
+            }
+        }
+
         [System.Xml.Serialization.XmlElementAttribute("nasjonalArealplanId", IsNullable=true)]
         public NasjonalArealplanIdType NasjonalArealplanId { get; set; }
         

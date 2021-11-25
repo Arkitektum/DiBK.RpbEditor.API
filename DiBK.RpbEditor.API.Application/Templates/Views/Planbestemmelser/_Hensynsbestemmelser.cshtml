@@ -17,6 +17,8 @@
                 <p class="text-content">@Raw(bestemmelse.Tekst.TekstInnhold)</p>
             }
 
+            @RenderVersion(bestemmelse.Versjonsnummer, bestemmelse.Versjonsdato)
+
             @if (HasValue(bestemmelse.Hensynskategori?.Kodebeskrivelse) || HasItems(bestemmelse.HensynSonenavn))
             {
                 <div class="more-info">
