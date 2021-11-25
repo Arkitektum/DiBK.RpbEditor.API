@@ -96,17 +96,28 @@
     }
 
         .header .title {
-            font-size: 18px;
-            line-height: 22px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
         }
 
-            .header .title span {
-                font-size: 12px;
-                display: block;
-            }
+        .header .title .type {
+            font-weight: 500;
+        }
 
         .header .info {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
             text-align: right;
+        }
+
+        .header .info .name-and-id {
+            font-weight: 500;
+        }
+
+        .header .info .version {
+            margin-bottom: 0;
         }
 
     .section {

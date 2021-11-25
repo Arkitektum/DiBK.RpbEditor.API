@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Reguleringsplan &ndash; @Model.Plantype.Kodebeskrivelse | @Model.Plannavn</title>
+    <title>Reguleringsplan &ndash; @Model.Plantype.Kodebeskrivelse?.ToLower() | @Model.Plannavn</title>
 
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -30,12 +30,12 @@
     <div class="sheet">
         <div class="header">
             <div class="title">
-                Reguleringsplan &ndash; @Model.Plantype.Kodebeskrivelse
+                <span class="type">Reguleringsplan &ndash; @Model.Plantype.Kodebeskrivelse?.ToLower()</span>
                 <span>(jf. plan- og bygningslovens (pbl) kap. 12)</span>
             </div>
             <div class="info">
-                @plannavn<br />
-                @planId
+                <span class="name-and-id">@plannavn (@planId)</span>
+                <span>@RenderVersion(Model.Versjonsnummer, Model.Versjonsdato)</span>
             </div>
         </div>
 
