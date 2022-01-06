@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <None Remove="Templates\Content\styles\bootstrap.min.css" />
+    <None Remove="Templates\Content\styles\paper.css" />
     <None Remove="Templates\Content\styles\styles.css" />
     <None Remove="Templates\Views\Planbestemmelser\Planbestemmelser.cshtml" />
     <None Remove="Templates\Views\Planbestemmelser\_Fellesbestemmelser.cshtml" />
@@ -20,6 +21,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Templates\Content\styles\bootstrap.min.css" />
+    <EmbeddedResource Include="Templates\Content\styles\paper.css" />
     <EmbeddedResource Include="Templates\Content\styles\styles.css" />
     <EmbeddedResource Include="Templates\Views\Planbestemmelser\Planbestemmelser.cshtml" />
     <EmbeddedResource Include="Templates\Views\Planbestemmelser\_Fellesbestemmelser.cshtml" />

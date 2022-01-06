@@ -3,8 +3,8 @@
     public class PdfSettings
     {
         public static string SectionName => "PdfSettings";
-        public string GeneratorUrl { get; set; }
-        public string GeneratorApiKey { get; set; }
+        public string ApiUrl { get; set; }
+        public string ApiKey { get; set; }
         public PaperSettings Paper { get; set; } = new PaperSettings();
 
         public class PaperSettings

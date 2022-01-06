@@ -87,7 +87,7 @@ namespace DiBK.RpbEditor.Application.Services
 
             var html = await ToHtml(reguleringsplanbestemmelser);
 
-            return await _pdfService.GeneratePdf(html);
+            return await _pdfService.GeneratePdfAsync(html);
         }
 
         public async Task<byte[]> ToPdf(Stream xmlStream)

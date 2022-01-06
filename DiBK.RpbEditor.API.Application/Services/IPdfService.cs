@@ -4,6 +4,6 @@ namespace DiBK.RpbEditor.Application.Services
 {
     public interface IPdfService
     {
-        Task<byte[]> GeneratePdf(string html);
+        Task<byte[]> GeneratePdfAsync(string htmlString);
     }
 }

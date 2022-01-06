@@ -10,32 +10,32 @@ namespace DiBK.RpbEditor.Application.Services
 {
     public class PdfService : IPdfService
     {
+        private readonly HttpClient _httpClient;
         private readonly PdfSettings _settings;
         private readonly ILogger<PdfService> _logger;
-        public HttpClient HttpClient { get; }
 
         public PdfService(
             HttpClient httpClient,
             IOptions<PdfSettings> options,
             ILogger<PdfService> logger)
         {
-            HttpClient = httpClient;
+            _httpClient = httpClient;
             _settings = options.Value;
             _logger = logger;
         }
 
-        public async Task<byte[]> GeneratePdf(string html)
+        public async Task<byte[]> GeneratePdfAsync(string htmlString)
         {
             try
             {
-                using var request = new HttpRequestMessage(HttpMethod.Post, _settings.GeneratorUrl)
+                using var request = new HttpRequestMessage(HttpMethod.Post, _settings.ApiUrl)
                 {
-                    Content = CreateHttpContent(html),
+                    Content = CreateFormData(htmlString)
                 };
 
-                request.Headers.Add("X-API-KEY", _settings.GeneratorApiKey);
+                request.Headers.Add("X-API-KEY", _settings.ApiKey);
 
-                using var response = await HttpClient.SendAsync(request);
+                using var response = await _httpClient.SendAsync(request);
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsByteArrayAsync();
@@ -47,15 +47,17 @@ namespace DiBK.RpbEditor.Application.Services
             }
         }
 
-        private StringContent CreateHttpContent(string html)
+        private MultipartFormDataContent CreateFormData(string htmlString)
         {
-            var postData = new JObject
+            var formData = new MultipartFormDataContent
             {
-                ["htmlData"] = html,
-                ["paper"] = JObject.FromObject(_settings.Paper)
+                { new StringContent(htmlString), "htmlString" },
+                { new StringContent(JObject.FromObject(_settings.Paper).ToString(), Encoding.UTF8, "application/json"), "options" }
             };
 
-            return new StringContent(postData.ToString(), Encoding.UTF8, "application/json");
+            formData.Headers.ContentType.MediaType = "multipart/form-data";
+
+            return formData;
         }
     }
 }

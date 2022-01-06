@@ -12,15 +12,9 @@
 
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="styles.css" />
-
-    <style type="text/css">
-        @@page {
-            size: A4;
-            margin: 2.5cm;
-        }
-    </style>
+    <link rel="stylesheet" href="paper.css" />
 </head>
-<body>
+<body class="A4">
     @{
         var plannavn = HasValue(Model.Plannavn) ? Model.Plannavn : "<Ikke angitt>";
         var planId = HasValue(Model.NasjonalArealplanId.AdministrativEnhet.Kommunenummer) && HasValue(Model.NasjonalArealplanId.Planidentifikasjon) ?
