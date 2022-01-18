@@ -19,7 +19,7 @@
 
             @RenderVersion(bestemmelse.Versjonsnummer, bestemmelse.Versjonsdato)
 
-            @if (HasItems(bestemmelse.BestemmelseOmrådenavn) || HasItems(bestemmelse.Feltnavn) || HasItems(bestemmelse.Objektnavn))
+            @if (HasItems(bestemmelse.BestemmelseOmrådenavn) || HasItems(bestemmelse.Objektnavn))
             {
                 <div class="more-info">
                     @if (HasItems(bestemmelse.BestemmelseOmrådenavn))
@@ -27,14 +27,6 @@
                         <div class="row">
                             <div class="col-3">Bestemmelsesområder:</div>
                             <div class="col-9">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
-                        </div>
-                    }
-
-                    @if (HasItems(bestemmelse.Feltnavn))
-                    {
-                        <div class="row">
-                            <div class="col-3">Felter:</div>
-                            <div class="col-9">@string.Join(", ", bestemmelse.Feltnavn)</div>
                         </div>
                     }
 

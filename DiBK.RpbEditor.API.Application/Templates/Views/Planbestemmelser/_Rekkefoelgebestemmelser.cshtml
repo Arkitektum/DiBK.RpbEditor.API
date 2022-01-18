@@ -21,7 +21,6 @@
 
             @if (HasValue(bestemmelse.Rekkefølgeangivelse?.Kodebeskrivelse) ||
              HasItems(bestemmelse.BestemmelseOmrådenavn) ||
-             HasItems(bestemmelse.Feltnavn) ||
              HasItems(bestemmelse.HensynSonenavn) ||
              HasItems(bestemmelse.Objektnavn))
             {
@@ -39,14 +38,6 @@
                         <div class="row">
                             <div class="col-3">Bestemmelsesområder:</div>
                             <div class="col-9">@string.Join(", ", bestemmelse.BestemmelseOmrådenavn)</div>
-                        </div>
-                    }
-
-                    @if (HasItems(bestemmelse.Feltnavn))
-                    {
-                        <div class="row">
-                            <div class="col-3">Felter:</div>
-                            <div class="col-9">@string.Join(", ", bestemmelse.Feltnavn)</div>
                         </div>
                     }
 

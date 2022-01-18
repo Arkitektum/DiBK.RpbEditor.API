@@ -10,17 +10,9 @@
     @foreach (var krav in Model.KravOmDetaljregulering)
     {
         <div class="section">
-            @if (HasItems(krav.Feltnavn) || HasItems(krav.BestemmelseOmrådenavn) || HasItems(krav.HensynSonenavn))
+            @if (HasItems(krav.BestemmelseOmrådenavn) || HasItems(krav.HensynSonenavn))
             {
                 <div class="more-info">
-                    @if (HasItems(krav.Feltnavn))
-                    {
-                        <div class="row">
-                            <div class="col-3">Felter:</div>
-                            <div class="col-9">@string.Join(", ", krav.Feltnavn)</div>
-                        </div>
-                    }
-
                     @if (HasItems(krav.BestemmelseOmrådenavn))
                     {
                         <div class="row">
